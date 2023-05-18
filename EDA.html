@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>EDA</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="introduction.html">Introduction</a></li>
+							<li><a href="data_preparation.html">Data Preparation</a></li>
+							<li><a href="EDA.html">EDA</a></li>
+							<li><a href="models.html">ML Models</a></li>
+							<li><a href="conclusion.html">Conclusions</a></li>
+							<li><a href="references.html">References</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>Exploratory Data Analysis</h1>
+							<span class="image main"><img src="images/pic13.jpg" alt="" /></span>
+							<div style="margin:auto">
+							<p>Since data cleaning and EDA goes hand in hand, content on this page picks up from what we left on Data Preparation page.
+								There were string values present in the target variable that we cleaned. These were the values:</p>
+								<p><li>Missing</li>
+								<li>No response</li>
+								<li>No Data</li>
+								<li>I/O</li>
+								<li>stop</li>
+								<li>start</li>
+								<li>bad</li>
+								<li>No connection</li></p>
+								<p>These valus are present in all the features in uniform amount, without any evident pattern with respect to their occurence
+								in the target variable. Let us visualize the number of unique values in each feature:</p>
+								<iframe width="900" height="800" frameborder="0" scrolling="no" src="//plotly.com/~shva3756/27.embed?showlink=false"></iframe>
+								<br>
+								<p>Segregating the features on the basis of unique values will help in performing fine grain analysis. First Let's jump onto exploration of numerical features.</p>
+
+								<h2>Analysis of numerical features</h2>
+
+								<p>
+									Like rest of the features, numerical features will have the above mentioned 8 string values, and they need to be imputed for building a prediction model.
+									Before performing imputation, let's look at the numerical features with respect to time.:
+								</p>
+								<iframe width="1000" height="800" frameborder="0" scrolling="no" src="//plotly.com/~shva3756/29.embed?showlink=false"></iframe>
+								<br>
+								<p>
+									From a naked eye, it is difficult to detect a pattern. Decomposing the time series into, its <a href="https://otexts.com/fpp2/tspatterns.html">trend and seasonality</a> will help us understand more about it.
+									Let's first look at the seasonalities for each feature:
+								</p>
+								<iframe width="1000" height="800" frameborder="0" scrolling="no" src="//plotly.com/~shva3756/13.embed?showlink=false"></iframe>
+								<br>
+								<p>Next are the trends:</p>
+
+								<iframe width="1000" height="800" frameborder="0" scrolling="no" src="//plotly.com/~shva3756/15.embed?showlink=false"></iframe>
+								<br>
+								<p>
+									All the features display seasonality to some extent. B19, B17, and B15 display similar trend and seasonality.
+									Similarly, B24, B25, and B16 display similarity in trend and seasonality. B2 and B18 does not seems to match along any features.
+								</p>
+
+								<p>The spread of each feature can be found here:</p>
+								<iframe width="900" height="800" frameborder="0" scrolling="no" src="//plotly.com/~shva3756/17.embed?showlink=false"></iframe>
+								<br>
+								<p>Apart from the B_18, features are not highly skewed, however, they exhibit large variances. Let's explore the relationships features exhibit with each other using correlation values:</p>
+								<iframe width="900" height="800" frameborder="0" scrolling="no" src="//plotly.com/~shva3756/37.embed?showlink=false"></iframe>
+								<br>
+								<p>Visualizing a couple of relationships of features that exhibit a strong correlation</p>
+
+								<iframe width="900" height="800" frameborder="0" scrolling="no" src="//plotly.com/~shva3756/31.embed?showlink=false"></iframe>
+								<br>
+								
+								<iframe width="900" height="800" frameborder="0" scrolling="no" src="//plotly.com/~shva3756/33.embed?showlink=false"></iframe>
+								<br>
+								
+								<h2>Analysis of categorical features</h2>
+								<p>As discussed, the 8 noisy string values are present in each feature, but how many are these?</p>
+
+								<iframe width="900" height="800" frameborder="0" scrolling="no" src="//plotly.com/~shva3756/35.embed?showlink=false"></iframe>
+								<br>
+								<p>Being in such a low percentage, we shall either replace those values, or create a seperate aggregated label.
+									Moving forward, Let us visualize the number of unique values in every categorical feature</p>
+								</p>
+								<iframe width="900" height="800" frameborder="0" scrolling="no" src="//plotly.com/~shva3756/25.embed?showlink=false"></iframe>
+								<br>
+								<p>
+									From the above plot we can see that features B_4, B_5, B_9, B_14, B_20, B_22 and B_23 have only 1 value.
+									Hence we shall drop these features while performing feature selection for our prediction model.
+								</p>
+								<p>Here is the distribution of feature B_3 and B_21 that have more than 3 unique categories:</p>
+								<iframe width="900" height="800" frameborder="0" scrolling="no" src="//plotly.com/~shva3756/42.embed?showlink=false"></iframe>
+								<br>
+								<iframe width="900" height="800" frameborder="0" scrolling="no" src="//plotly.com/~shva3756/44.embed?showlink=false"></iframe>
+							</p>
+							
+							</div>
+							</div>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="#">
+									<div class="fields">
+										<div class="field half">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="field half">
+											<input type="email" name="email" id="email" placeholder="Email" />
+										</div>
+										<div class="field">
+											<textarea name="message" id="message" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="primary" /></li>
+									</ul>
+								</form>
+							</section>
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Furnance Maintenance Prediction</li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

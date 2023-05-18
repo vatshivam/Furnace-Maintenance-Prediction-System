@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Naive Bayes</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">CSCI - 5562</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="introduction.html">Introduction</a></li>
+							<li><a href="data_preparation.html">Data Preparation</a></li>
+							<li><a href="EDA.html">EDA</a></li>
+							<li><a href="models.html">ML Models</a></li>
+							<li><a href="conclusion.html">Conclusions</a></li>
+							<li><a href="references.html">References</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<header>
+								<h1>Naïve Bayes<br />
+							</header>
+							<span class="image main"><img src="images/naive.jpg" alt="" /></span>
+                            <div style="margin:auto">
+                            <h2>Overview</h2>
+                            <p>Naïve Bayes methods are a set of supervised learning algorithms based on applying Bayes' theorem with
+                                the "naïve" assumption of conditional independence between every pair of features given the value of
+                                the class variable.To get clarity about how the algorithm actually works let's look at a small example.<br></p>
+                            <h2>How do we train it?</h2>
+                                <p>
+                                Let's say we have task to classify if an email is spam or not. Consider that the email contains a set of words
+                                Naive bayes works by taking the probabilities of different features in the data, such as the frequency of certain words
+                                in an email, and combining them to calculate the probability that the email is either spam or not.<br>
+                                The "naïve" part of the name comes from the assumption that all of these features are independent of
+                                each other, even if they might actually be related. Despite this simplification, Naive Bayes can still
+                                be surprisingly accurate in many real-world situations.
+
+                                The model is trained by <b>finding the probability/likelyhood of each feature</b> (here words) given that the traning point
+                                belongs to a class. For example, the probability that the word "friend" occurs in the dataset is 0.14 given that the email is spam. Similarly,
+                                probabilities for rest of the words/features is calculated and we take a product of these values.
+                                <br>
+                                <img src="images/spam.png" width="400" height="200" style="margin:30px 10px"><br>
+                                Similarly we calculate the probability that the word "friend" occurs in the dataset is 0.29 given that the email
+                                is not spam. This value is multiplied with other words' probabilities. After having 2 values, one for spam and other
+                                for not spam, we compare which one is larger. The category not spam has a higher probability, and using this measure
+                                we shall predict that the given is not spam.<br>
+                                <img src="images/Not_spam.png" width="400" height="200" style="margin:30px 10px"><br>
+                                </p>
+                                <h2>Smoothing in Naïve Bayes</h2>
+                                <p>
+                                    Smoothing is a technique that handles the problem of zero probability in Naïve Bayes. This can happen when the value
+                                    of a feature (which is an attribute of the data point that is to be predicted) is not present in the training data. 
+                                    Due to this, when we calculate the probability of this feature with respect to a class, we get 0 in return. This will render the
+                                    effective probability to be zero. Laplace is commonly used to add a constant integer in the numerator to make the probability
+                                    non zero. In order to balance this effect, we add an integer equal to the number of classes in our data. In our example this value
+                                    will be equal to 2 (given that there are two classes "spam" and "not spam").<br>
+                                <img src="images/smoothing.png" width="400" height="200" style="margin:30px 10px"><br>
+                                </p>
+                                <h2>Bernoulli Naïve Bayes</h2>
+                                <p>It is a special case of vanilla Naïve Bayes. Here the features are assumed to be 
+                                    binary instead of having more than two categories as it was in the Multinomial Naïve bayes 
+                                    (Multinomial Naïve bayes and Naïve bayes are used interchangibly).
+                                </p>
+
+								<h2>Data Preparation</h2>
+								<p>
+									From EDA and clustering sections, multiple features were found to have similarities. Hence it is palpable to remove
+									similar features to avoid multicollinearity.
+								</p>
+								<h3>Numerical feature selection</h3>
+								<p>Features B_15, B_17 and B_19 were similar in nature, hence, let's remove the
+									former two (on the basis of higher similarity/association). Similarly, among features B_24, B_25 and B_16, dropping
+									the former two features.</p>
+								<h3>Categorical feature selection</h3>
+								<p>Deducing similar categorical feature can be achieved using Chi-Squared tests and Mutual Information gain. After 
+									conducting Chi-Squared test among categorical features against the label, feature "B_3" found to have no correlation.
+									Therefore, making it imperative to be removed from the data. Further, B_21 and B_10 found to be dependent to each other,
+									motivating us to remove one of them. Both the features have same p-value for the chi-squared test so we cannot decide 
+									which one to drop on this basis. Hence,removing B_10 as it has less number of categories, or less amount of variation.<br>
+									Code for feature selection can be found in Code section.
+								</p>
+								<h3>Prediction Modelling</h3>
+								<p>Given that Scikit-Learn only allows numerical data for Naive-Bayes, the following data is used for the classification task:</p>
+								<br>
+								<img src="images/dt_data.png" width="700" height="600" style="margin:30px 10px"><br>
+								<p>From the above image we can observe that the data is in numerical format. Apart from that, the data is split into
+									splits using train_test_split function. This function splits the data randomly, where a specific percentage of data
+									points are partitioned as training set and the rest as testing. From the training set, a small parition is seperated
+									for validation. By default, this function chooses points without replacement. Here is the dataset to be used for classificaition.
+								</p>
+
+								<h2>Code</h2>
+								<p>The code for classification tasks can be found here.</p>
+
+								<h2>Results</h2>
+								<p>Results for Naive-Bayes is divided into three sections. This is because MultinomialNB cannot be used with numerical data.
+									Hence, I've used the following strategy:</p>
+								<li>Implement MultinomialNB on categorical features</li>
+								<li>Implement GaussianNB on numerical features</li> 
+								<li>Taking product of the probabilities of test_data from both the classifiers. Finally dividing the product by the class probability (Since the final probabilities have the class probabilities considered twice)</li>
+								<br>
+								<h3>Classification results for MultinomialNB</h3>
+								<img src="images/mnb_cm.png" width="500" height="400" style="margin:30px 10px"><br>
+								
+								<h3>Classification results for GaussianNB</h3>
+								<img src="images/gnb_cm.png" width="500" height="400" style="margin:30px 10px"><br>
+
+								<h3>Combined classifier performance</h3>
+								<img src="images/combined_cm.png" width="500" height="400" style="margin:30px 10px"><br>
+
+								<h2>Conclusions</h2>
+								<p>
+									From the confusion matrices it is clear that the combined classifer performance is the best in terms of
+									having least number of false positives. From the above results we can conclude that with 81% accuracy
+									we can detect a bad cycle, that is, we can predict before hand if a furnace requires maintenance with 81% accuracy.
+								</p>
+								</div>
+						</div>
+					</div>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

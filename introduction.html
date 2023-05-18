@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Introduction</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<!-- <a href="index.html" class="logo"> -->
+									<!-- <span class="symbol"><img src="images/logo.svg" alt="" />Alu</span><span class="title"></span> -->
+								<!-- </a> -->
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="introduction.html">Introduction</a></li>
+							<li><a href="data_preparation.html">Data Preparation</a></li>
+							<li><a href="EDA.html">EDA</a></li>
+							<li><a href="models.html">ML Models</a></li>
+							<li><a href="conclusion.html">Conclusions</a></li>
+							<li><a href="references.html">References</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>Introduction</h1>
+							<span class="image main"><img src="images/introduction_cover.jpg" alt="" /></span>
+							<div style="margin:auto">
+								
+								<p align="justify">
+									Anticipating when does an aluminium melting furnance requires maintenance can save up to 20000 USD in an hour. This is because knowing about the maintenance time beforehand saves up to 30 minutes of downtime, 1 hour of maintenance which is equivalent of approximately 16000 USD on average. In addition, it incurs extra cost of 250 dollars per hour to accommodate labor on a short notice. Further it affects the production cycle down the line and results in the delay of product delivery. One immediate solution is to increase the frequency of maintenance, however, it will result in increased downtimes and labor cost. This is why timely intimation of maintenance cycles is critical for Aluminum businesses. The goal of the project is to determine maintenance cycle of the Aluminum melting furnaces using machine learning.
+								</p>
+								<br>
+								<p align="justify">
+									Aluminium recycling is a profitable business, both for the environment and the industry. According to the aluminum association[1], almost 75% of all aluminium is in use today. Recycling a single can of aluminium saves enough energy to listen to a full album on an Ipod. One of the most elementary steps in recycling aluminium is decoating. It is a process of removing any kinds of coatings, paints, lacquers as well as other organic contaminants and humidity from the scrap. This helps in obtaining high quality pre-treatment material that is constructive in high yield. Aluminium dross is generated as a byproduct of this process. 
+								</p>
+								
+								<img src="images/dross.jpg" alt="" width="800" height="500" style="margin:100px 50px"/>
+								
+								<br>
+								<p align="justify">
+									Aluminum dross is a hazardous solid waste in aluminum production industries has caused serious environmental and public health challenges. It is highly flammable, irritant and if inhaled or swallowed or penetrate the skin cause health problems. It is estimated that each metric ton of the dross produces twelve metric tons of gaseous emissions some of which are explosive, toxic and stinky[2]. Dross is disposed using landfills which pose of a risk of intoxication of ground water and soil. Consuming water containing these contaminants can result in headaches, insomnia, weakness in the legs and even nervous-system disorders, at high concentrations. For 100 kg of molten aluminum, an average of about 20 kg aluminum dross is generated. The aluminium industry delivers roughly around 3 million tonnes of waste dross to the environment as pollution. Furnaces with on-the-spot maintenance have a higher probability to produce larger levels of aluminium dross and it exacerbates the problem of handling dross. Hence, cutting down dross levels by predicting the maintenance cycle in furnace can be significant tool for the industry.
+								</p>
+
+								<p align="justify">
+									An immediate solution for dross management is to recycle dross and extract the aluminium content from it. By product of this process is salt-cake. It is regarded as a hazardous wates and there are procedures to recycle this byproduct. This is done by grinding up the saltcake and separating out the free aluminium. The current technology has high initial and operating cost and not economical in small volume and that is why there are only few aluminium salt cake recycling facilities exist. All the salt cake generated by the aluminium recycling plants have to transport the salt cakes to these facilities, which results a large amount of cost due to transportation and associated CO2 emissions. From this lifecycle of aluminium waste, it can be observed that even though there are methodologies to treat the byproduct of aluminium recycling, they come with a cost, financially and environmentally. Therefore reemptively reducing the dross generated is the most optimal option.	 
+								</p>
+								<img src="images/collage-intro.jpg" alt="" width="500" height="400" style="margin:100px 50px"/>
+
+								<p>
+									Dross recycling can pose several challenges to the United States, including:
+								</p>
+								<li><b>Limited infrastructure: </b>The lack of proper infrastructure is a significant challenge faced by the United States in dross recycling. The country may not have enough facilities to collect, transport, and process the waste material.</li>
+								<li><b>Cost-effectiveness: </b>Recycling dross can be expensive due to the need for specialized equipment, labor, and transportation. The high costs of recycling may discourage businesses and individuals from investing in the process.</li>
+								<li><b>Environmental concerns: </b>Dross recycling can pose environmental risks, especially if not done properly. For example, improper disposal of dross can result in air, water, and soil pollution, leading to negative impacts on human health and the environment.</li>
+								<li><b>Limited awareness: </b>Many people are not aware of the benefits of dross recycling, and as such, they may not actively participate in the process. Raising awareness and educating people about the benefits of recycling can help increase participation.</li>
+								<li><b>Legal barriers: </b>Some laws and regulations may make it difficult for businesses to recycle dross. For example, some regulations may require specific permits or licenses to operate recycling facilities, which can be time-consuming and costly.</li>
+								
+								<h2>QnA</h2>
+								<li><b>Question:</b>What is the nature of features? How many are categorical and numerical?</li>
+								<li><b>Answer:</b>Features corresponds to the sensor data collected over time intervals of 5 seconds. Originally there were
+								22 features in total. 12 are categorical features and the rest are numerical features.</li>
+								<li><b>Question:</b>What is the number of null values for each feature</li>
+								<li><b>Answer:</b>0 for all the features however there were string values present in the features, which were cleaned.</li>
+								<li><b>Question:</b>Do numerical features exhibit any pattern with time</li>
+								<li><b>Answer:</b>Yes, from EDA it was found that most of the numerical features were periodic in nature, having a predictable cycle.</li>
+								<li><b>Question:</b>Are there are strong correlations</li>
+								<li><b>Answer:</b>Strong correlations were found in many features: B_15 & B_19, B_15 & B_17, B_17 & B_19, B_15 & B_25, B_15 & B_24 etc. Refer <a href="https://vatshivam.github.io/EDA.html">EDA</a> section for more details.</li>
+								<li><b>Question:</b>What is the distribution of numerical features</li>
+								<li><b>Answer:</b>All of them are normaally distributed, however there are either positively or negatively skewed.</li>
+								<li><b>Question:</b>What categorical features have no information</li>
+								<li><b>Answer:</b>B_4, B_5, B_9, B_14, B_20, B_22 and B_23 have only 1 unique value in the data.</li>
+								<li><b>Question:</b>What numerical features display similarity in terms of seasonality and trend</li>
+								<li><b>Answer:</b>All the nueric features except B_2 and B_18 exhibit peridicity and strong correlation with each other</li>
+								<li><b>Question:</b>Which method should be used to impute missing values</li>
+								<li><b>Answer:</b>For time series data, during the imputation one should carefully consider the periodic nature of the data.
+								Hence, using a static value could disturb the original sequence of data. Therefore, spline imputation has been used to
+								fill in the string values.</li>
+								<li><b>Question:</b>What is the distribution of few categorical features</li>
+								<li><b>Answer:</b>B_3 is uniformly distributed across the categories, whereas categories in B_21 seems to follow a discrete normal distribution.</li>
+
+								<p>
+									In summary, maintenance is critical for aluminum businesses to reduce downtime, labor cost, and delay in product delivery. Decoating generates hazardous aluminum dross, which is difficult to manage due to its hazardous nature and environmental impact. Although recycling dross is an immediate solution, it comes with a high cost. Predicting maintenance cycles in furnaces can help minimize dross levels and mitigate its environmental impact. By reducing dross production, the industry can reduce the associated costs of dross management and mitigate its environmental impact.
+								</p>
+							</div>
+						</div>
+						<br>
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="#">
+									<div class="fields">
+										<div class="field half">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="field half">
+											<input type="email" name="email" id="email" placeholder="Email" />
+										</div>
+										<div class="field">
+											<textarea name="message" id="message" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="primary" /></li>
+									</ul>
+								</form>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

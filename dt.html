@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Decision Trees</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">CSCI - 5562</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="introduction.html">Introduction</a></li>
+							<li><a href="data_preparation.html">Data Preparation</a></li>
+							<li><a href="EDA.html">EDA</a></li>
+							<li><a href="models.html">ML Models</a></li>
+							<li><a href="conclusion.html">Conclusions</a></li>
+							<li><a href="references.html">References</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<header>
+								<h1>Decision Trees<br />
+							</header>
+							<span class="image main"><img src="images/tree.png" alt="" /></span>
+                            <div style="margin:auto">
+                            <h2>Overview</h2>
+                            <p>
+                                As the name suggests Decision tree builds classification or regression models in the form of a tree structure.
+                                It breaks down a data set into smaller and smaller subsets with the aim that the subset will have data points
+                                from a single class.
+                            </p>
+                            
+                            <h2>How do we train it?</h2>
+                                <p>
+                                The traning process of a decision tree is heavily influenced by the process of creating the splits, that is
+                                how we subset the data is actually responsible for the quality of predictions. A decision tree is built top
+                                -down from a root node and involves partitioning the data into subsets that contain instances with similar values.
+                                The question arises on basis of what feature and its values, the data shall be split. This decision is made using the
+                                metrics such as Entropy and Gini.</p>
+                                <p> These metrics are used to evaluate the the randomness/impurity in the data. Lesser is
+                                the randomness, better is the traning process. But why are we chasing for pure/homogeneuos nodes? With this criteria decision
+                                tree is able to do reasonable splits. Since having a perfect decision tree is not practically possible, having this metric helps
+                                us to steer the splitting in such a direction that will help us learn the non-linerity of the data, and finally make accurate predictions.</p>
+                                
+                                <h2>Metrics</h2>
+                                <ol>
+                                    <li>Gini</li>
+                                    <li>Entropy</li>
+                                </ol>
+
+                                <p>The <b>Gini Index</b> or <b>Gini Impurity</b> is calculated by subtracting the sum of the squared probabilities
+                                    of each class from one. It favours mostly the larger partitions and are very simple to implement. In simple terms,
+                                    it calculates the probability of a certain randomly selected feature that was classified incorrectly. The Gini Index
+                                    varies between 0 and 1, where 0 represents purity of the classification and 1 denotes random distribution of elements
+                                    among various classes. A Gini Index of 0.5 shows that there is equal distribution of elements across some classes.
+                                </p>
+                                <br>
+                                <img src="images/Gini.png" width="400" height="200" style="margin:30px 10px">
+                                <br>
+                                <p>
+                                    <b>Entropy</b>, also called Shannon Entropy, is the measure of the amount of randomness or uncertainty in the data.
+                                    It is denoted by H(S):
+                                    <br>
+                                    <img src="images/entropy.png" width="400" height="150" style="margin:30px 10px">
+                                    <br>
+                                    The purpose of Entropy is same as Gini.
+                                </p>
+                                <p>After building the tree, it's performance shall be checked on a testing data. Each data point is goes through
+                                    whole tree starting at the root node. This means, that according to the features of the data point, the logic
+                                    upon which the splits are created will direct the data point in a particular direction. After recursively
+                                    traversing the nodes, the data point shall finally arrive at a leaf node (pure node). The class of the pure nodes
+                                    is then given as an output for the data point. This processs is similar to traverse a chain of if-else logical blocks.
+                                </p>
+
+								<h2>Data Preparation</h2>
+								<p>Given that Scikit-Learn only allows numerical data for Naive-Bayes, the following data is used for the classification task:</p>
+								<br>
+								<img src="images/dt_data.png" width="700" height="600" style="margin:30px 10px"><br>
+								<p>From the above image we can observe that the data is in numerical format. Apart from that, the data is split into
+									splits using train_test_split function. This function splits the data randomly, where a specific percentage of data
+									points are partitioned as training set and the rest as testing. From the training set, a small parition is seperated
+									for validation. By default, this function chooses points without replacement. Here is the <a href="https://github.com/vatshivam/furnace-maintenance-predictor/blob/main/data/classification_1.csv">dataset</a> to be used for classification.
+								</p>
+
+								<h2>Code</h2>
+								<p>The code for classification tasks can be found <a href="https://github.com/vatshivam/furnace-maintenance-predictor/blob/main/DecisionTree_NaiveBayes.ipynb">here</a>.</p>
+
+								<h2>Results</h2>
+								<p>The Decision Tree classifier is run three times with different set of hyperparameters.</p>
+								<h3>Iteration 1</h3>
+								<p>
+									<l1>max_depth: 10</l1>
+									<l1>min_samples_split: 50</l1>
+									<l1>ccp_alpha: 0.01</l1>
+									<l1>class_weight: "balanced"</l1>
+								</p>
+								<img src="images/first_cm.png" width="500" height="400" style="margin:30px 10px"><br>
+								<img src="images/first_tree.png" width="700" height="500" style="margin:30px 10px"><br>
+
+								<h3>Iteration 2</h3>
+								<p>
+									<l1>max_depth: 10</l1>
+									<l1>min_samples_split: 50</l1>
+									<l1>class_weight: "balanced"</l1>
+								</p>
+								<img src="images/second_cm.png" width="500" height="400" style="margin:30px 10px"><br>
+								<img src="images/second_tree.png" width="700" height="500" style="margin:30px 10px"><br>
+								<p>The tree size for this iteration was very large, due to absence of pruning.</p>
+
+								<h3>Iteration 3</h3>
+								<p>
+									<l1>max_depth: 10</l1>
+									<l1>min_samples_split: 50</l1>
+									<l1>min_samples_leaf : 30</l1>
+									<l1>ccp_alpha: 0.001</l1>
+									<l1>class_weight: "balanced"</l1>
+								</p>
+								<img src="images/third_cm.png" width="500" height="400" style="margin:30px 10px"><br>
+								<img src="images/third_tree.png" width="700" height="500" style="margin:30px 10px"><br>
+
+								<h2>Conclusions</h2>
+								<p>From the confusion matrices it is clear that the third classifer performance is the best in terms of
+								having least number of false positives and having the highest accuracy. From the above results we can conclude that with 77% accuracy
+								we can detect a bad cycle, that is, we can predict before hand if a furnace requires maintenance with 77% accuracy.
+								</p>
+								</div>
+						</div>
+					</div>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

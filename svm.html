@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>SVM</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">CSCI - 5562</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="introduction.html">Introduction</a></li>
+							<li><a href="data_preparation.html">Data Preparation</a></li>
+							<li><a href="EDA.html">EDA</a></li>
+							<li><a href="models.html">ML Models</a></li>
+							<li><a href="conclusion.html">Conclusions</a></li>
+							<li><a href="references.html">References</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<header>
+								<h1>Support Vector Machines(SVM)<br />
+							</header>
+							<span class="image main"><img src="images/svm_cover.jpg" alt="" /></span>
+                            <div style="margin:auto">
+                            <h2>Introduction</h2>
+                            <p>
+                                SVM is a linear seperator, that is, it is a classifier that seperates two classes using a line/plane/hyperplane.
+                                What makes SVM special is that even though the data is not linearly seperable in the original dimensions, it can
+                                still seperate. Without actually projecting the data points into a higher dimension, it calculates the dot product 
+                                of the input vector with itself in a higher dimension. This enables SVM to obtain a hyperplane that can seperate the 
+                                data points in a higher dimension actually projecting them in a higher dimension.
+                            </p>
+                            <img src="images/svm_intro.png" width="700" height="600" style="margin:30px 10px"><br>
+                            <h2>Why Linear Seperators</h2>
+                                <p>
+                                    SVMs are linear classifiers that find a hyperplane to separate data into different classes. They are efficient for linearly separable problems. However, the kernel trick can be used to map data to a higher-dimensional space where data can be linearly separable if not separable in the original feature space. This technique allows SVMs to handle complex data distributions that are not linearly separable. In summary, SVMs use linear separators and can be used with non-linear kernels to classify data.
+                                </p>
+                            <h2>Dot Products and kernels in SVM</h2>
+                                <p>
+                                <ol>
+                                    <li>The dot product is crucial in SVMs for computing similarity between two high-dimensional data points.</li>
+                                    <li>The kernel function allows the dot product to be calculated in the feature space instead of the coordinate space.</li>
+                                    <li>Similarity between two data points in the feature space is determined by the dot product, with higher values indicating greater similarity.</li>
+                                    <li>The kernel function enables the use of SVMs without directly computing coordinates, making it practical for high-dimensional feature spaces.</li>
+                                    <li>SVMs can be used in cases where explicit computation of coordinates in feature space is impractical.</li>
+                                </ol>
+                                </p><br>
+                                <img src="images/svm_kernel_trick.png" width="800" height="600" style="margin:30px 10px"><br>
+                            <h2>Polynomial Kernel over 2-D data</h2>
+                                <p>
+                                    x is (x1, x2) and b is (b1, b2) [polynomial kernel= (xTb + r)^d] <br>
+                                Let r = 1 and let d = 2 <br>
+                                (xTb + 1)2 = (xTb +1)(xTb +1) = <br>
+                                (xTb)(xTb) + 1/2aTb + 1/2xTb + 1 = <br>
+                                (xTb)(xTb) + xTb + 1 =<br>
+                                (x1b1 + x2b2)(x1b1+x2b2) + (x1b1 + x2b2) + 1 =<br>
+                                x1^2b1^2 + 2x1x2b1b2 + x2^2b2^2 + x1b1 + x2b2 + 1<br>
+                                Now  let's see how to write dot product for it<br>
+                                [x1^2 , sqrt(2)x1x2, x2^2, x1, x2, 1] dot [b1^2 , sqrt(2)b1b2 , b2^2, b1, b2, 1]<br>
+                                <br>
+                                Now - let's check the dot product we get directly from the kernel vs the dot product we
+                                get after the transformation.<br>
+                                <br>
+                                Let x = (1,2) and let b = (2,1)
+                                where r = 1 and d = 2 so that K(x,b) = (xTb + 1)^2
+                                If we plug in a and b directly we should get the dot product from the
+                            transformed space!
+                                <br>
+                                    ((1, 2) dot (2, 1) + 1)^2 = (4 + 1)^2 =(5)^2 = 25
+                            OK - what happens if we transform x and b first and then get the dot
+                            product in the transformed space. It should be the same that is it should be
+                            25. <br>
+
+                            Let r = 1 and let d = 2 <br>
+                            (xb + 1)^2 = x1^2b1^2 + 2x1x2b1b2 + x2^2b2^2 + x1b1 + x2b2 + 1 <br>
+                            and the dot product is: <br>
+                            [x1^2 , sqrt(2)x1x2, x2^2, x1, x2, 1] dot [b12 , sqrt(2)b1b2 , b2^2, b1, b2, 1] <br>
+                            Let x = (2,1) and let b = (1,2) <br>
+                            The transformation of x is <br>
+                            [x1^2 , sqrt(2)x1x2, x2^2, x1, x2, 1] -- > [4, sqrt(2)(2)(1), 1, 2, 1, 1] <br>
+                            The transformation of b is <br>
+                            [b1^2 , sqrt(2)b1b2 , b2^2, b1, b2, 1/2] -- > [1, sqrt(2)(1)(2), 4, 1, 2, 1] <br>
+                            Now - get the dot product<br>
+                            [4, sqrt(2)(2)(1), 1, 2, 1, 1] dot [1, sqrt(2)(1)(2), 4, 1, 2, 1]
+                            = 25
+                                </p>
+
+							<h2>Data Preparation</h2>
+								
+								<img src="images/svm_data.png" width="900" height="600" style="margin:30px 10px"><br>
+                                <img src="images/train_and_split_svm.png" width="700" height="600" style="margin:30px 10px"><br>
+                                <img src="images/y_train_test_svm.png" width="700" height="600" style="margin:30px 10px"><br>
+								<p>From the above image we can observe that the data is in numerical format. Apart from that, the data is split into
+									splits using train_test_split function. This function splits the data randomly, where a specific percentage of data
+									points are partitioned as training set and the rest as testing. From the training set, a small parition is seperated
+									for validation. By default, this function chooses points without replacement.
+								</p>
+
+								<h2>Code</h2>
+								<p>The code for classification tasks can be found <a href="https://github.com/vatshivam/furnace-maintenance-predictor/blob/main/SVM.ipynb">HERE.</a>.<br>
+                                <a href="https://github.com/vatshivam/furnace-maintenance-predictor/blob/main/data/classification_1.csv">Here</a> is the dataset used.</p>
+
+								<h2>Results</h2>
+								<p>
+                                    Considering F-1 score as the metric of performance, SVM with polynomial kernel and C = 0.1
+                                    gave the best results. Best results refer to the ability to correctly predict the maintenance
+                                    cycle. In other words, this classifier has the least number of false negatives and false positives combined. Here is the
+                                    classification report and the cofusion matrix for this classifier:
+                                </p>
+                                <img src="images/best_class_svm.png" width="600" height="500" style="margin:30px 10px"><br>
+                                <img src="images/best_class_svm_cm.png" width="700" height="600" style="margin:30px 10px"><br>
+                                <p>Summary of rest of the classifiers with rbf and linear kernels:</p>
+                                <img src="images/linear_cr.png" width="700" height="600" style="margin:30px 10px"><br>
+                                <img src="images/rbf_cr.png" width="700" height="600" style="margin:30px 10px"><br>
+
+                                <p>Analyzing the above mentioned metric, we could observe that the kernels are not causing significant variations
+                                    Even changing the regularization penalty within a kernel is not shifting the F1 score to a great extent.
+                                </p>
+
+								<h2>Conclusions</h2>
+								<p>
+									The performance of SVM is similar to what we observed from decision trees and naive bayes. However, one of the
+                                    SVM classifier performed very well in terms of reducing the number of false negatives to 28. This classifier had an
+                                    rbf kernal and regularization parameter set as default.
+								</p>
+								</div>
+						</div>
+					</div>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

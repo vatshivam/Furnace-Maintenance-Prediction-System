@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Linear Regression</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">CSCI - 5562</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="introduction.html">Introduction</a></li>
+							<li><a href="data_preparation.html">Data Preparation</a></li>
+							<li><a href="EDA.html">EDA</a></li>
+							<li><a href="models.html">ML Models</a></li>
+							<li><a href="conclusion.html">Conclusions</a></li>
+							<li><a href="references.html">References</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<header>
+								<h1>Linear Regression<br />
+							</header>
+							<span class="image main"><img src="images/linear-reg.jpg" alt="" /></span>
+                            <div style="margin:auto">
+                            <h2>Introduction</h2>
+                            <p>
+                                Also known as Ordinary least squares Linear Regression. Linear Regression is the supervised Machine
+                                Learning model in which the model finds the best fit linear line between the independent and dependent
+                                variable i.e it finds the linear relationship between the dependent and independent variable. In simple
+                                linear regression the number of independent variables is just one. Here is how a linear regression equation
+                                looks like:
+                            </p>
+                            <img src="images/simple_linear_reg.png" width="400" height="300" style="margin:30px 10px"><br>
+                            <p>In multiple linear regression the number of independent variables increases, and this is how the multiple 
+                                linear regression equation looks:
+                            </p>
+                            <img src="images/multiple_linear_regression.png" width="600" height="400" style="margin:30px 10px"><br>
+                            <p>Goal of this technique is to fit a line using the independent variables such that the error
+                                while predicting the dependent variable using the same line is minimized.</p>
+                            <img src="images/reg_line.png" width="700" height="600" style="margin:30px 10px"><br>
+
+                            <h2>How Does Linear Regression works</h2>
+                            <p>
+                                In order to find the optimal slope and intercept of the line, we first calculate the error term. Error
+                                term defined how much away our line is from the actual values we want to predict. The goal is to minimize
+                                the error term. Hence, as a general practice in mathematics, derivates are calculated with respect to both
+                                the entities, and are equated to zero. Using these two new equations, we get the value slope and intercept
+                                for which the error term is minimized.
+                            </p>
+
+                            <h2>Limitations</h2>
+                            <p>
+                                The biggest disadvantage of linear regression is that it assumes:
+                                <ol>
+                                    <li>The relationship between the dependent and independent variable is linear.</li>
+                                    <li>There is no correlation present among the dependent variables.</li>
+                                    <li>The variance of errors is constant.</li>
+                                </ol>
+                                In most of the real-world datasets, all these assumptions are not met. Hence the credibility of using
+                                this technique gets undermined in some situations.
+                            </p>
+
+							<h2>Data Preparation</h2>
+								
+								<img src="images/data_lr.png" width="400" height="700" style="margin:30px 10px"><br>
+                                
+								<p>From the above image we can observe that the data is in numerical format with only a single quantitative predictor. 
+                                    Apart from that, the data is split into
+									splits using train_test_split function. This function splits the data randomly, where a specific percentage of data
+									points are partitioned as training set and the rest as testing. From the training set, a small parition is seperated
+									for validation. By default, this function chooses points without replacement. Here is the data: <a href="https://github.com/vatshivam/furnace-maintenance-predictor/blob/main/data/lr_data.csv">Link</a>.
+								</p>
+								<h2>Code</h2>
+								<p>The code for classification tasks can be found <a href="https://github.com/vatshivam/furnace-maintenance-predictor/blob/main/LR.ipynb">HERE.</a>.<br>
+
+								<h2>Results</h2>
+								<p>
+                                    Given that the label of the dataset is binary, logistic regression is been used instead of linear regression since
+                                    the context of both the techniques is identical. Here is the regression line:</p>
+                                <img src="images/final_equation.png" width="600" height="700" style="margin:30px 10px"><br>
+
+                                    <p>The dependent variable is the maintenance cycle (either 0 which means maintenance is not required or 1 vice versa)
+                                        The model gave out 88% accuracy. However, the performance is poor in predecting the maintenance cycle (for predicting label "1").
+                                        This is likely due to the non linearity present in the data which is not captured by the regression model. Here is the
+                                        classification report and the cofusion matrix for this classifier:
+                                </p>
+                                <img src="images/cm_lr.png" width="500" height="500" style="margin:30px 10px"><br>
+
+								<h2>Conclusions</h2>
+								<p>
+									The performance of regression is inferior to what we observed from decision trees, naive bayes and SVMs. This result is 
+                                    justified given that the number predictors used in the model is very less as compared to the other classifiers. Additionally,
+                                    as mentioned above regression model are not suitable for learning non linear patterns in the data.
+								</p>
+								</div>
+						</div>
+					</div>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
